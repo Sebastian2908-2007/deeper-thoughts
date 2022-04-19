@@ -42,14 +42,27 @@ module.exports = {
 };
 
 /**
- {
+{
   "data": {
     "login": {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoidGVzdGVyOCIsImVtYWlsIjoidGVzdDhAZ21haWwuY29tIiwiX2lkIjoiNjI1ZTM0YmMzOWRhYTcyZDcwMmE0MTk3In0sImlhdCI6MTY1MDM0ODk4NCwiZXhwIjoxNjUwMzU2MTg0fQ.l1QEXRP3-eDtdoUIQqWrYAk558NfxO9zilt8vLBrI-w",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoidGVzdGVyOCIsImVtYWlsIjoidGVzdDhAZ21haWwuY29tIiwiX2lkIjoiNjI1ZTM0YmMzOWRhYTcyZDcwMmE0MTk3In0sImlhdCI6MTY1MDM4NjA1MSwiZXhwIjoxNjUwMzkzMjUxfQ.m5oEY95hlCQ2yY2kFfuknEe7r-4J5uOIlMkn1VqUIWg",
       "user": {
         "_id": "625e34bc39daa72d702a4197"
       }
     }
   }
+} 
+{
+  "data": {
+    "me": {
+      "thoughts": [
+        {
+          "_id": "625ee92093f0513facb3e0ee",
+          "thoughtText": "I think graphql is pretty cool!"
+        }
+      ]
+    }
+  }
 }
+
  */
