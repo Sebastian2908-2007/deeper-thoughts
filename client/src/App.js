@@ -1,4 +1,6 @@
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+// function for retrieving token on every graphql request
+import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
@@ -16,9 +18,19 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+// essentially a middleware function that will retrieve the token for us and combine it with the existing httpLink.
+const authLink = setContext((_, {headers}) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }
+});
 // client prop to be passed in to ApolloProvider in order to give app access to all endpoint data
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

@@ -66,3 +66,69 @@ query user($username: String!) {
     }
 }
 `;
+// for personal profile page 
+export const QUERY_ME = gql` 
+{
+    me {
+        _id 
+
+        username
+
+        email 
+
+        friendCount 
+
+        thoughts {
+
+            _id
+
+            thoughtText
+
+            createdAt 
+
+            reactionCount
+
+            reactions {
+
+                _id 
+
+                createdAt
+
+                reactionBody
+                
+                username
+            }
+        }
+
+        friends {
+
+            _id 
+
+            username
+        }
+    }
+}
+` ;
+
+// call query me for more basic info for homepage
+export const QUERY_ME_BASIC = gql` 
+{
+    me{
+        _id 
+
+        username
+
+        email 
+
+        friendCount
+
+        friends {
+
+            _id
+
+            username
+            
+        }
+    }
+}
+` ;

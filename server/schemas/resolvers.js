@@ -42,7 +42,7 @@ const resolvers = {
         addUser: async (parent,args) => {
           const user = await User.create(args);
           const token = signToken(user);
-
+         // this is an Auth object created and mentioned in typeDefs
           return {user,token};
         },
         login: async (parent, {email, password}) => {
@@ -58,6 +58,7 @@ const resolvers = {
               throw new AuthenticationError('Incorrect password');
           }
           const token = signToken(user);
+          // this is an Auth object created and mentioned in typeDefs
           return {user,token};
         },
         addThought: async (parent, args, context) => {

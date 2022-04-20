@@ -1,27 +1,43 @@
-import { useParams } from "react-router";
+import { Redirect,useParams } from "react-router";
 import ThoughtList from "../components/ThoughtList";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import FriendList from "../components/FriendList"; 
+import Auth from '../utils/auth';
 
 const Profile = () => {
  const { username: userParam } = useParams();
 
- const { loading,data } = useQuery(QUERY_USER,{
+ // conditionally use a query based on the parameters
+ const { loading,data } = useQuery(userParam ? QUERY_USER: QUERY_ME,{
    variables: { username: userParam }
  });
+// the response will be returned in an object named after the actual query defined in typedefs on backend
+ const user = data?.me || data?.user || {};
 
- const user = data?.user || {};
+ // check if the logged-in user's username is the same as the parameter, and redirect to personal profile page if so.
+ if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+   return <Redirect to="/profile" />
+ }
+
 
  if (loading) {
    return <div>loading...</div>
+ }
+
+ if (!user?.username) {
+   return (
+     <h4>
+       you need to be logged in to see this page. Use navigation links above to sign in or sign up!
+     </h4>
+   );
  }
 
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          Viewing {user.username}'s profile
+          Viewing {userParam ? `${user.username}'s `: 'your'} Profile
         </h2>
       </div>
 
