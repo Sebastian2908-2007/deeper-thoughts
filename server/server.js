@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 // import apollo server for graphql
 const { ApolloServer } = require('apollo-server-express');
@@ -36,6 +37,16 @@ startServer();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// code to serve production build
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+// catch all for unknown requests
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 db.once('open', () => {
   app.listen(PORT, () => {
