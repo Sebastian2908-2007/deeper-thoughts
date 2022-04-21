@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // catch all for unknown requests
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 db.once('open', () => {
