@@ -49,6 +49,9 @@ sebastiancrespin279@gmail.com
 ## Deployed APP
 https://salty-lowlands-33018.herokuapp.com/
 
+## Sample image
+![Screenshot (240)](https://user-images.githubusercontent.com/77297220/164551974-c9c0260a-6678-4d36-a6e2-8b4b6bb5033f.png)
+
 
 ## License
 ISC 
