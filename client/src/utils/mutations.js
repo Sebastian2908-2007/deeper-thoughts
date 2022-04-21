@@ -28,3 +28,26 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
 }
 `;
+
+// addfriend mutation
+export const ADD_FRIEND = gql` 
+
+mutation addFriend($id: ID!) {
+
+    addFriend(friendId: $id) {
+
+        _id 
+
+        username
+
+        friendCount
+
+        friends {
+
+            _id
+
+            username
+
+        }
+    }
+}`;
